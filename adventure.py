@@ -21,8 +21,8 @@ while 1:
         break
 
 print("Hi %s, thanks for playing!" % player)
-gender="neither"
-while not (gender=="boy" or gender=="girl" or gender=="alien" or gender=="gurl" or gender=="boi"):
+gender="none"
+while not (gender=="boy" or gender=="girl" or gender=="alien" or gender=="gurl" or gender=="boi" or gender=="heshe" or gender=="neither"):
     gender=raw_input("%s, are you a boy or a girl? " % player)
     if gender=="alien":
         print("WHOA! REALLY! OMG! THAT IS SO CRAZY!")
@@ -30,6 +30,11 @@ while not (gender=="boy" or gender=="girl" or gender=="alien" or gender=="gurl" 
         print("Ha! u SpEl BaD!")
     if gender=="boi":
         print("Ha! u SpEl BaD!")
+    if gender=="heshe":
+        print("Hi Bruce Jenner!")
+    if gender=="neither":
+        print("WHOA! YOU MUST BE A WIZARD!")
+        print("You can do magic")
 print("Type 'help' for help, type 'bye' to quit.")
 print("Have fun %s!" % player)
 
@@ -44,6 +49,9 @@ def yard(x,y,action):
         if can_mow > 0.9:
             print("Your mower blades spin around, cutting up all the helpless life forms below you... now your lawn is perfect!")
             can_mow=can_mow-1
+        if gender=="heshe":
+            print("You mowed the lawn in a record time of 0.0001 milliseconds!")
+            return 1
         else:
             print("You already mowed the lawn, silly %s!" % player)
     return 1
