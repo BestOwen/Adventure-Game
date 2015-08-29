@@ -10,6 +10,8 @@ while 1:
     if player=="Satan":
         print("GOD HAS STRUCK YOU DOWN!")
         exit (0)
+    if player=="Owen":
+        print("Whoa twinsies!")
     if player=="Jesus":
         print("HALLELUJAH! HALLELUJAH!")
         break
@@ -49,7 +51,12 @@ def yard(x,y,action):
 def deck(x,y,action):
     global can_mow
     if action=="help":
-	    print("ACTIONS: relax")
+	    print("ACTIONS: relax, grill")
+    if action=="grill":
+        print("Yum! You gave it to squirrels!")
+        can_mow=can_mow+0.1
+        if player=="Owen":
+            print("You can't cook so your steak tried to kill you, but you were too awesome for it!")
     if action=="relax":
         print("You relaxed dude.")
         can_mow=can_mow+0.1
