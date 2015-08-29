@@ -40,8 +40,21 @@ print("Have fun %s!" % player)
 
 def yard(x,y,action):
     global can_mow
+    global current_world
+    global max_y
+    global max_x
+    global position_x
+    global position_y
     if action=="help":
         print("ACTIONS: play, mow the lawn")
+    if action=="magic":
+        if gender=="neither":
+            print("You opened a portal to another dimension.")
+            current_world=world2
+            max_y=len(current_world)
+            max_x=len(current_world[0])
+            position_x=0
+            position_y=0
     if action=="play":
         print("You had loads of fun!")
         can_mow=can_mow+0.1
@@ -234,11 +247,57 @@ def wet(x,y,action):
     if action=="PARTY!":
         print("YOU PARTIED SO MUCH!")
     return 1
+    
+def panic(x,y,action):
+    if action=="help":
+        print("ACTIONS: panic")
+    if action=="panic":
+        print("AAAAAHHHHHH")
+    return 1
+    
+def shel(x,y,action):
+    if action=="help":
+        print("ACTIONS: hide")
+    if action=="hide":
+        BOOM=random.randint(1,100)
+        if BOOM < 11:
+            print("BOOOOOOOM! YOU DIED!")
+            return 0
+        elif BOOM > 10:
+            print("You lived! Yay!")
+            return 1
             
-
-
-
-
+def missile(x,y,action):
+    if action=="help":
+        print("ACTIONS: launch")
+    if action=="launch":
+        print("You made a big boom! Goody!")
+    return 1
+    
+def haunt(x,y,action):
+    if action=="help":
+        print("ACTIONS: mow the lawn")
+    if action=="mow the lawn":
+        print("The mower tears through the flesh of the insects below. You jerk!")
+        
+def decay(x,y,action):
+    if action=="help":
+        print("ACTIONS: none")
+        
+def killer(x,y,action):
+    if action=="help":
+        print("ACTIONS: none")
+        
+def mur(x,y,action):
+    if action=="help":
+        print("ACTIONS: none")
+        
+def ev(x,y,action):
+    if action=="help":
+        print("ACTIONS: none")
+    
+        
+            
 world = [
   [["yard", yard],         ["yard", yard],       ["deck", deck]],
   [["bathroom", bathroom], ["kitchen", kitchen], ["dining room", dining]],
@@ -246,16 +305,23 @@ world = [
   [["study", study],       ["hallway", hall],    ["living room", room]],
   [["trash can", trash],   ["forest", forest],   ["chair", chair]],
   [["backyard", oyard],    ["backyard", oyard],  ["backyard", oyard]],
-  [["SCARY BASEMENT", scary], ["desert", dry],   ["oasis", wet]]
+  [["SCARY BASEMENT", scary], ["desert", dry],   ["oasis", wet]],
+  [["panic room", panic],  ["fallout shelter", shel], ["missile launch", missile]]
 ]
 
-max_y=len(world)
-max_x=len(world[0])
-
-print("World dimensions are: %d/%d" % (max_x, max_y))
-
+world2 = [
+    [["hauntyard", haunt], ["hauntyard", haunt], ["decaying deck", decay]],
+    [["killer bathroom", killer], ["murder kitchen", mur], ["evilfoodland", ev]]
+]
 position_x=0
 position_y=0
+
+current_world=world
+
+max_y=len(current_world)
+max_x=len(current_world[0])
+
+print("World dimensions are: %d/%d" % (max_x, max_y))
 
 can_mow=1
 can_pee=5
@@ -263,7 +329,7 @@ can_poop=5
 can_eat=10
 
 while 1:
-	print("You are currently in %s at position %d/%d" % (world[position_y][position_x][0], position_y, position_x))
+	print("You are currently in %s at position %d/%d" % (current_world[position_y][position_x][0], position_y, position_x))
 	action=raw_input("Move (north, south, east, west)? ")
 	if action == "north":
 		position_y=position_y-1
@@ -291,6 +357,6 @@ while 1:
 		continue
 	if action == "bye":
 		break
-	if world[position_y][position_x][1](position_x,position_y,action)==0:
+	if current_world[position_y][position_x][1](position_x,position_y,action)==0:
 		break	
 		
