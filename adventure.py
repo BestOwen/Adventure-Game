@@ -275,26 +275,54 @@ def missile(x,y,action):
     return 1
     
 def haunt(x,y,action):
+    global current_world
+    global max_y
+    global max_x
+    global position_x
+    global position_y
     if action=="help":
         print("ACTIONS: mow the lawn")
+    if action=="magic":
+        if gender=="neither":
+            print("You opened a portal to another dimension.")
+            current_world=world
+            max_y=len(current_world)
+            max_x=len(current_world[0])
+            position_x=0
+            position_y=0
     if action=="mow the lawn":
         print("The mower tears through the flesh of the insects below. You jerk!")
         
 def decay(x,y,action):
     if action=="help":
-        print("ACTIONS: none")
+        print("ACTIONS: look onward, grill, relax")
+    if action=="look onward":
+        print("You look ahead at the dying world. Will you ever make it back home?")
+    if action=="grill":
+        print("AAAAHHHHHH! WHAT IS THAT?! IS THAT A PERSON?!")
+    if action=="relax":
+        print("You attempt to relax, but the unsettling environment prevents it.")
+        if gender=="alien":
+            print("A ship crashes ahead of you. Should you investigate?")
         
 def killer(x,y,action):
     if action=="help":
-        print("ACTIONS: none")
+        print("ACTIONS: sniff")
+    if action=="sniff":
+        print("AUGH! The world fades to black...")
+        return 0
         
 def mur(x,y,action):
     if action=="help":
-        print("ACTIONS: none")
+        print("ACTIONS: look around")
+    if action=="look around":
+        print("All you find is items that expired 50 years ago...")
         
 def ev(x,y,action):
     if action=="help":
-        print("ACTIONS: none")
+        print("ACTIONS: eat")
+    if action=="eat":
+        print("Yeah, no.")
     
         
             
